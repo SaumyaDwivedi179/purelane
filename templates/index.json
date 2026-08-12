@@ -9,7 +9,9 @@
       },
       "block_order": ["promise_1", "promise_2", "promise_3"],
       "settings": {
-        "heading": "Clean\nThat\nLasts",
+        "heading": "Clean\nThat",
+        "accent_heading": "Lasts",
+        "products": ["foaming-kitchen-cleaner", "tap-limescale-cleaner", "copper-bronze-brass-cleaner"],
         "copy": "Homecare that works on the toughest grime, made from plants. Kind to your home, your family and the world outside it.",
         "primary_label": "Shop now",
         "primary_link": "shopify://collections/all",
@@ -31,9 +33,9 @@
     "purelane_combos": {
       "type": "purelane-combos",
       "blocks": {
-        "combo_1": { "type": "combo", "settings": { "heading": "Kitchen essentials", "copy": "Everything for a sparkling kitchen, selected as one easy set.", "badge": "Most popular" } },
-        "combo_2": { "type": "combo", "settings": { "heading": "Laundry care bundle", "copy": "A softer, fresher wash and a cleaner machine in one box.", "badge": "Fresh favourite" } },
-        "combo_3": { "type": "combo", "settings": { "heading": "Complete home bundle", "copy": "Our biggest saving across kitchen, laundry, bathroom and floors.", "badge": "Best value" } }
+        "combo_1": { "type": "combo", "settings": { "bundle_product": "kitchen-essentials-bundle", "product_1": "foaming-kitchen-cleaner", "product_2": "tap-limescale-cleaner", "product_3": "copper-bronze-brass-cleaner", "heading": "Kitchen essentials", "copy": "Everything for a sparkling kitchen, selected as one easy set.", "badge": "Most popular" } },
+        "combo_2": { "type": "combo", "settings": { "bundle_product": "bathroom-deep-clean-bundle", "product_1": "tap-limescale-cleaner", "product_2": "non-toxic-toilet-cleaner", "heading": "Laundry care bundle", "copy": "A softer, fresher wash and a cleaner machine in one box.", "badge": "Fresh favourite" } },
+        "combo_3": { "type": "combo", "settings": { "bundle_product": "complete-home-bundle", "product_1": "foaming-kitchen-cleaner", "product_2": "plant-based-laundry-detergent", "product_3": "herbal-floor-cleaner", "heading": "Complete home bundle", "copy": "Our biggest saving across kitchen, laundry, bathroom and floors.", "badge": "Best value" } }
       },
       "block_order": ["combo_1", "combo_2", "combo_3"],
       "settings": {}
@@ -41,9 +43,9 @@
     "purelane_bundles": {
       "type": "purelane-bundles",
       "blocks": {
-        "tier_1": { "type": "tier", "settings": { "eyebrow": "Starter", "heading": "Pick any two", "price": "₹349", "feature_1": "Choose your favourites", "feature_2": "One flat price", "feature_3": "Free shipping", "featured": false } },
-        "tier_2": { "type": "tier", "settings": { "eyebrow": "Most popular", "heading": "Pick any three", "price": "₹499", "feature_1": "Choose your favourites", "feature_2": "One flat price", "feature_3": "Free shipping", "featured": true } },
-        "tier_3": { "type": "tier", "settings": { "eyebrow": "Best value", "heading": "Pick any five", "price": "₹799", "feature_1": "Choose your favourites", "feature_2": "One flat price", "feature_3": "Free shipping", "featured": false } }
+        "tier_1": { "type": "tier", "settings": { "product": "kitchen-essentials-bundle", "eyebrow": "Starter", "heading": "Pick any two", "price": "₹349", "feature_1": "Choose your favourites", "feature_2": "One flat price", "feature_3": "Free shipping", "featured": false } },
+        "tier_2": { "type": "tier", "settings": { "product": "bathroom-deep-clean-bundle", "eyebrow": "Most popular", "heading": "Pick any three", "price": "₹499", "feature_1": "Choose your favourites", "feature_2": "One flat price", "feature_3": "Free shipping", "featured": true } },
+        "tier_3": { "type": "tier", "settings": { "product": "complete-home-bundle", "eyebrow": "Best value", "heading": "Pick any five", "price": "₹799", "feature_1": "Choose your favourites", "feature_2": "One flat price", "feature_3": "Free shipping", "featured": false } }
       },
       "block_order": ["tier_1", "tier_2", "tier_3"],
       "settings": {}

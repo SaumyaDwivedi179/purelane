@@ -4,7 +4,7 @@
 <section class="pl-section pl-hero" id="PurelaneHero-{{ section.id }}">
   <div class="pl-shell pl-hero__grid">
     <div>
-      <h1 class="pl-hero__title">{{ section.settings.heading | newline_to_br }}</h1>
+      <h1 class="pl-hero__title">{{ section.settings.heading | newline_to_br }}<br><em>{{ section.settings.accent_heading | escape }}</em></h1>
       <p class="pl-copy">{{ section.settings.copy | escape }}</p>
       <div class="pl-hero__actions">
         {% if section.settings.primary_label != blank %}<a class="pl-button pl-button--primary" href="{{ section.settings.primary_link }}">{{ section.settings.primary_label | escape }}</a>{% endif %}
@@ -45,7 +45,8 @@
   "tag": "section",
   "class": "section",
   "settings": [
-    { "type": "textarea", "id": "heading", "label": "Heading", "default": "Clean\nThat\nLasts" },
+    { "type": "textarea", "id": "heading", "label": "Heading", "default": "Clean\nThat" },
+    { "type": "text", "id": "accent_heading", "label": "Accent heading", "default": "Lasts" },
     { "type": "textarea", "id": "copy", "label": "Copy", "default": "Homecare that works on the toughest grime, made from plants. Kind to your home, your family and the world outside it." },
     { "type": "product_list", "id": "products", "label": "Featured products", "limit": 3 },
     { "type": "text", "id": "primary_label", "label": "Primary button", "default": "Shop now" },
