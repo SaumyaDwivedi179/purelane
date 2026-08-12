@@ -1,4 +1,3 @@
-product-images/
-data/
+product-images/*
+data/*
 README.md
-
