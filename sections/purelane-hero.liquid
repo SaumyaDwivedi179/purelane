@@ -1,6 +1,9 @@
 {{ 'purelane.css' | asset_url | stylesheet_tag }}
 <script src="{{ 'purelane.js' | asset_url }}" defer="defer"></script>
 
+<div class="pl-scenes" aria-hidden="true"><div class="pl-scene-waves"><i></i><i></i><i></i><i></i></div><div class="pl-bubbles">{% for i in (1..12) %}<i></i>{% endfor %}</div></div>
+<nav class="pl-progress" aria-label="Section progress"><a href="#top" aria-label="Hero"></a><a href="#ingredients" aria-label="Ingredients"></a><a href="#how" aria-label="How it works"></a><a href="#proof" aria-label="Proof"></a><a href="#combos" aria-label="Combos"></a><a href="#bundles" aria-label="Bundles"></a><a href="#shop" aria-label="Shop"></a></nav>
+
 <div class="pl-ticker" aria-hidden="true">
   <div class="pl-ticker__track">
     {% for repeat in (1..2) %}
@@ -54,7 +57,7 @@
     <purelane-slider class="pl-hero__stage" aria-label="Featured products">
       <article class="pl-hero__slide" data-slide>
         {% if p1.featured_image %}{{ p1.featured_image | image_url: width: 700 | image_tag: class: 'pl-bottle pl-bottle--large', loading: 'eager', alt: p1.title }}{% endif %}
-        <div class="pl-price-tag"><small>Single bottle</small><strong>{{ p1.price | money }}</strong>{% if p1.compare_at_price > p1.price %}<s>{{ p1.compare_at_price | money }}</s>{% endif %}</div>
+        <div class="pl-price-tag"><small>Single bottle</small><strong>{{ p1.price | money }}</strong>{% if p1.compare_at_price > p1.price %}<s>{{ p1.compare_at_price | money }}</s><em>{{ p1.compare_at_price | minus: p1.price | times: 100 | divided_by: p1.compare_at_price }}% off</em>{% endif %}</div>
       </article>
       <article class="pl-hero__slide" data-slide>
         {% if p2.featured_image %}{{ p2.featured_image | image_url: width: 700 | image_tag: class: 'pl-bottle pl-bottle--small', loading: 'eager', alt: p2.title }}{% endif %}

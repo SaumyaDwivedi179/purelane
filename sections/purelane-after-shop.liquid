@@ -1,0 +1,15 @@
+{{ 'purelane.css' | asset_url | stylesheet_tag }}
+
+<section class="pl-section pl-after-shop" data-pl-depth="4">
+  <div class="pl-shell">
+    <div class="pl-why pl-glass pl-reveal"><span class="pl-kicker">The smarter way to shop</span><h2 class="pl-heading">Why bundles beat buying single</h2><div class="pl-why__grid"><div><i>₹</i><b>Save up to 45%</b><span>Versus buying separately</span></div><div><i>✓</i><b>One flat price</b><span>No comparing carts</span></div><div><i>☆</i><b>Curated by experts</b><span>Products that work together</span></div><div><i>▣</i><b>Free shipping always</b><span>Included across India</span></div></div></div>
+    <header class="pl-after-shop__head"><span class="pl-kicker">Bundle categories</span><h2 class="pl-heading">Find the right bundle for you</h2></header>
+    <div class="pl-category-grid">{% assign handles = 'foaming-kitchen-cleaner,non-toxic-toilet-cleaner,plant-based-laundry-detergent,tap-limescale-cleaner' | split: ',' %}{% assign labels = 'Kitchen bundle,Bathroom bundle,Laundry bundle,Hard water bundle' | split: ',' %}{% for handle in handles %}{% assign item = all_products[handle] %}<a class="pl-category pl-glass pl-reveal" href="{{ item.url | default: '#combos' }}">{% if item.featured_image %}{{ item.featured_image | image_url: width: 360 | image_tag: loading: 'lazy', alt: item.title }}{% endif %}<b>{{ labels[forloop.index0] }}</b><span>Shop the complete solution</span></a>{% endfor %}</div>
+    <div class="pl-trust pl-glass"><span>♧ Plant derived formulas</span><span>▣ Recyclable packaging</span><span>♡ Safe for kids & pets</span><span>⊕ Made in India</span></div>
+    <div class="pl-signup pl-glass pl-reveal"><span class="pl-kicker">Join the Purelane Club</span><h2 class="pl-heading">Get ₹100 off your first bundle</h2><p>Plus first access to new launches and restocks.</p>{% form 'customer', class: 'pl-signup__form' %}<input type="email" name="contact[email]" placeholder="your@email.com" aria-label="Email address" required><button class="pl-button pl-button--primary" type="submit">Get my ₹100 off</button>{% endform %}</div>
+  </div>
+</section>
+
+{% schema %}
+{ "name": "Purelane bundle guide", "tag": "section", "class": "section", "settings": [], "presets": [{ "name": "Purelane bundle guide" }] }
+{% endschema %}

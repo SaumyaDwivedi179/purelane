@@ -2,9 +2,9 @@
 
 <section class="pl-section pl-combos" id="combos">
   <div class="pl-shell">
-    <header class="pl-section-head">
-      <div><span class="pl-kicker">{{ section.settings.kicker | escape }}</span><h2 class="pl-heading">{{ section.settings.heading | escape }}</h2></div>
-      <p class="pl-copy">{{ section.settings.copy | escape }}</p>
+    <header class="pl-combos__head pl-reveal">
+      <span class="pl-kicker">{{ section.settings.kicker | escape }}</span><h2 class="pl-heading">{{ section.settings.heading | escape }}</h2>
+      <div class="pl-leaf-rule"><i></i><span>♧</span><i></i></div><p class="pl-copy">{{ section.settings.copy | escape }}</p>
     </header>
 
     <div class="pl-rail">
@@ -29,6 +29,7 @@
         </article>
       {% endfor %}
     </div>
+    <p class="pl-swipe-cue">→ Swipe for more combos</p><p class="pl-rail-note">Tapping “Shop bundle” opens the bundle with these products ready to buy.</p>
   </div>
 </section>
 
@@ -38,9 +39,9 @@
   "tag": "section",
   "class": "section",
   "settings": [
-    { "type": "text", "id": "kicker", "label": "Kicker", "default": "Best-selling combos" },
-    { "type": "text", "id": "heading", "label": "Heading", "default": "Better together" },
-    { "type": "textarea", "id": "copy", "label": "Copy", "default": "Swipe through the boxes people order most." }
+    { "type": "text", "id": "kicker", "label": "Kicker", "default": "Pre-built to save you money" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Best selling combos" },
+    { "type": "textarea", "id": "copy", "label": "Copy", "default": "Swipe through the boxes people order most. Each one is already priced below buying the same products on their own." }
   ],
   "blocks": [{
     "type": "combo", "name": "Combo", "settings": [

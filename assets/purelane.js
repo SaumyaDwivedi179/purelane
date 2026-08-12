@@ -36,3 +36,23 @@ if (purelaneHeader) {
   updatePurelaneHeader();
   addEventListener('scroll', updatePurelaneHeader, { passive: true });
 }
+
+const purelaneReveals = document.querySelectorAll('.pl-reveal');
+const purelaneProgress = [...document.querySelectorAll('.pl-progress a')];
+if ('IntersectionObserver' in window) {
+  const revealObserver = new IntersectionObserver((entries) => entries.forEach((entry) => {
+    if (entry.isIntersecting) entry.target.classList.add('is-visible');
+  }), { threshold: .12 });
+  purelaneReveals.forEach((element) => revealObserver.observe(element));
+
+  const sectionObserver = new IntersectionObserver((entries) => entries.forEach((entry) => {
+    if (!entry.isIntersecting) return;
+    const link = purelaneProgress.find((item) => item.hash === `#${entry.target.id}`);
+    if (link) purelaneProgress.forEach((item) => item.toggleAttribute('data-active', item === link));
+    const depth = entry.target.dataset.plDepth;
+    if (depth) document.querySelector('.pl-scenes')?.setAttribute('data-depth', depth);
+  }), { rootMargin: '-35% 0px -55%' });
+  document.querySelectorAll('[id], [data-pl-depth]').forEach((section) => sectionObserver.observe(section));
+} else {
+  purelaneReveals.forEach((element) => element.classList.add('is-visible'));
+}

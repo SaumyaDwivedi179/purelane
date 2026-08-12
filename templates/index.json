@@ -43,15 +43,26 @@
       "block_order": ["ingredient_1", "ingredient_2", "ingredient_3", "ingredient_4", "ingredient_5"],
       "settings": {}
     },
+    "purelane_story": {
+      "type": "purelane-story",
+      "blocks": {
+        "pillar_1": { "type": "pillar", "settings": { "heading": "Less scrubbing", "copy": "A foaming formulation. The foam clings to grease and lifts it, so you wipe instead of scrub.", "link": "#shop" } },
+        "pillar_2": { "type": "pillar", "settings": { "heading": "Clean ingredients", "copy": "No sulphates, no chlorine, no synthetic fragrance. Nothing on the label you would not want near your food.", "link": "#ingredients" } },
+        "pillar_3": { "type": "pillar", "settings": { "heading": "Safe around everyone", "copy": "Gentle on hands, safe around kids and pets, and no toxic residue on everyday surfaces.", "link": "#proof" } }
+      },
+      "block_order": ["pillar_1", "pillar_2", "pillar_3"],
+      "settings": { "product": "foaming-kitchen-cleaner" }
+    },
     "purelane_combos": {
       "type": "purelane-combos",
       "blocks": {
         "combo_1": { "type": "combo", "settings": { "bundle_product": "kitchen-essentials-bundle", "product_1": "foaming-kitchen-cleaner", "product_2": "tap-limescale-cleaner", "product_3": "copper-bronze-brass-cleaner", "heading": "Kitchen essentials", "copy": "Everything for a sparkling kitchen, selected as one easy set.", "badge": "Most popular" } },
         "combo_2": { "type": "combo", "settings": { "bundle_product": "bathroom-deep-clean-bundle", "product_1": "tap-limescale-cleaner", "product_2": "non-toxic-toilet-cleaner", "heading": "Laundry care bundle", "copy": "A softer, fresher wash and a cleaner machine in one box.", "badge": "Fresh favourite" } },
-        "combo_3": { "type": "combo", "settings": { "bundle_product": "complete-home-bundle", "product_1": "foaming-kitchen-cleaner", "product_2": "plant-based-laundry-detergent", "product_3": "herbal-floor-cleaner", "heading": "Complete home bundle", "copy": "Our biggest saving across kitchen, laundry, bathroom and floors.", "badge": "Best value" } }
+        "combo_3": { "type": "combo", "settings": { "bundle_product": "complete-home-bundle", "product_1": "foaming-kitchen-cleaner", "product_2": "plant-based-laundry-detergent", "product_3": "herbal-floor-cleaner", "heading": "Complete home bundle", "copy": "Our biggest saving across kitchen, laundry, bathroom and floors.", "badge": "Best value" } },
+        "combo_4": { "type": "combo", "settings": { "bundle_product": "bathroom-deep-clean-bundle", "product_1": "non-toxic-toilet-cleaner", "product_2": "tap-limescale-cleaner", "product_3": "copper-bronze-brass-cleaner", "heading": "Bathroom deep clean", "copy": "A complete bathroom refresh in one box.", "badge": "You save ₹398" } }
       },
-      "block_order": ["combo_1", "combo_2", "combo_3"],
-      "settings": {}
+      "block_order": ["combo_1", "combo_2", "combo_3", "combo_4"],
+      "settings": { "kicker": "Pre-built to save you money", "heading": "Best selling combos", "copy": "Swipe through the boxes people order most. Each one is already priced below buying the same products on their own." }
     },
     "purelane_bundles": {
       "type": "purelane-bundles",
@@ -61,16 +72,20 @@
         "tier_3": { "type": "tier", "settings": { "product": "complete-home-bundle", "eyebrow": "Best value", "heading": "Pick any five", "price": "₹799", "feature_1": "Choose your favourites", "feature_2": "One flat price", "feature_3": "Free shipping", "featured": false } }
       },
       "block_order": ["tier_1", "tier_2", "tier_3"],
-      "settings": {}
+      "settings": { "kicker": "Build your bundle", "heading": "One box. Every room.", "copy": "Mix and match across kitchen, laundry, home and skin. One flat price, no code needed, free shipping either way." }
     },
     "purelane_products": {
       "type": "purelane-product-grid",
-      "settings": { "collection": "all", "limit": 12 }
+      "settings": { "collection": "all", "limit": 12, "kicker": "Bestsellers", "heading": "Loved by 30,000 homes" }
+    },
+    "purelane_after_shop": {
+      "type": "purelane-after-shop",
+      "settings": {}
     },
     "purelane_footer": {
       "type": "purelane-footer",
       "settings": {}
     }
   },
-  "order": ["purelane_hero", "purelane_reviews", "purelane_ingredients", "purelane_combos", "purelane_bundles", "purelane_products", "purelane_footer"]
+  "order": ["purelane_hero", "purelane_reviews", "purelane_ingredients", "purelane_story", "purelane_combos", "purelane_bundles", "purelane_products", "purelane_after_shop", "purelane_footer"]
 }
