@@ -1,0 +1,37 @@
+{{ 'purelane.css' | asset_url | stylesheet_tag }}
+
+<section class="pl-section pl-ingredients" id="ingredients">
+  <div class="pl-shell">
+    <div class="pl-ingredients__panel pl-glass">
+      <header class="pl-ingredients__head"><h2 class="pl-heading">{{ section.settings.heading | escape }}</h2><div class="pl-leaf-rule"><i></i><span>♧</span><i></i></div></header>
+      <div class="pl-ingredient-grid">
+        {% for block in section.blocks %}
+          <article class="pl-ingredient" {{ block.shopify_attributes }}>
+            <div class="pl-ingredient__art" aria-hidden="true">
+              {% case forloop.index %}
+                {% when 1 %}<svg viewBox="0 0 100 100" fill="none"><circle cx="50" cy="62" r="25"/><path d="M31 53c9-6 29-6 38 0M41 63c4 8 14 8 18 0M50 37V25"/><path class="pl-accent" d="M50 27C42 18 30 16 21 21c5 10 17 13 29 6Zm0 0c8-9 20-11 29-6-5 10-17 13-29 6Z"/></svg>
+                {% when 2 %}<svg viewBox="0 0 100 100" fill="none"><circle cx="45" cy="58" r="23"/><path d="M45 35v46M22 58h46M29 42l32 32M61 42 29 74"/><path class="pl-accent" d="M62 28c13-1 20 10 15 20-4 8-15 9-19 2M45 34c-3-8 2-15 10-16 1 9-3 15-10 16Z"/></svg>
+                {% when 3 %}<svg viewBox="0 0 100 100" fill="none"><circle cx="36" cy="66" r="16"/><circle cx="64" cy="69" r="14"/><circle cx="50" cy="43" r="14"/><path d="M50 29V17M31 60a5 5 0 0 1 4-4M46 38a5 5 0 0 1 4-4"/><path class="pl-accent" d="M50 21c-8-8-18-8-23-2 7 8 17 10 23 2Z"/></svg>
+                {% when 4 %}<svg viewBox="0 0 100 100" fill="none"><path class="pl-accent" d="M18 82C36 66 58 44 82 20"/><path d="M27 73c-6-7-4-15 3-18 4 7 3 14-3 18Zm4-4c8-4 15 0 16 8-8 2-14-1-16-8Zm10-10c-6-7-4-16 3-19 4 7 3 15-3 19Zm4-4c9-4 16 0 17 8-8 2-15-1-17-8Zm11-11c-6-7-4-16 3-19 4 7 3 15-3 19Zm4-4c9-4 16 0 17 8-8 2-15-1-17-8Z"/></svg>
+                {% else %}<svg viewBox="0 0 100 100"><path d="M50 88C44 62 39 42 24 15c15 27 22 47 29 73Zm2 0c-2-28-2-49-8-79 11 29 13 50 12 79Zm2 0c2-28 6-48 20-75-11 28-15 48-16 75Zm2 0c4-24 12-40 30-61-14 22-21 38-26 61Zm-8 0c-4-22-12-38-30-58 14 21 22 36 27 58Z"/></svg>
+              {% endcase %}
+            </div>
+            <h3>{{ block.settings.name | escape }}</h3><p>{{ block.settings.copy | escape }}</p>
+          </article>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Purelane ingredients",
+  "tag": "section",
+  "class": "section",
+  "settings": [{ "type": "text", "id": "heading", "label": "Heading", "default": "Sourced from nature" }],
+  "blocks": [{ "type": "ingredient", "name": "Ingredient", "settings": [{ "type": "text", "id": "name", "label": "Name", "default": "Coconut" }, { "type": "textarea", "id": "copy", "label": "Description", "default": "Plant-derived cleansers that lift grease" }] }],
+  "max_blocks": 5,
+  "presets": [{ "name": "Purelane ingredients", "blocks": [{ "type": "ingredient" }, { "type": "ingredient", "settings": { "name": "Orange peel", "copy": "Natural degreaser and fresh citrus lift" } }, { "type": "ingredient", "settings": { "name": "Soap nut", "copy": "A traditional plant foaming agent" } }, { "type": "ingredient", "settings": { "name": "Neem", "copy": "Time-tested antibacterial from the tree" } }, { "type": "ingredient", "settings": { "name": "Lemongrass", "copy": "Clean fragrance with nothing synthetic" } }] }]
+}
+{% endschema %}

@@ -29,3 +29,10 @@ if (!customElements.get('purelane-slider')) {
     }
   });
 }
+
+const purelaneHeader = document.querySelector('.pl-header');
+if (purelaneHeader) {
+  const updatePurelaneHeader = () => purelaneHeader.classList.toggle('is-scrolled', scrollY > 24);
+  updatePurelaneHeader();
+  addEventListener('scroll', updatePurelaneHeader, { passive: true });
+}

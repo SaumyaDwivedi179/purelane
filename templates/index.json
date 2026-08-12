@@ -25,9 +25,22 @@
         "review_1": { "type": "review", "settings": { "rating": 5, "title": "Works like a charm", "review": "Finally an eco option that cleans as well as the chemical detergent I used for years, and it smells better.", "customer": "Anita" } },
         "review_2": { "type": "review", "settings": { "rating": 5, "title": "Best dishwash ever", "review": "Our old dishwash left my hands dry. That stopped completely after we switched.", "customer": "Priya" } },
         "review_3": { "type": "review", "settings": { "rating": 5, "title": "Great product, great packaging", "review": "Very soft on hands with a lovely fragrance, and it feels good to use far less plastic.", "customer": "Sunita" } },
-        "review_4": { "type": "review", "settings": { "rating": 5, "title": "Dog friendly", "review": "We switched because floor cleaners were setting off my dog's allergies. No reactions since.", "customer": "Rohit S." } }
+        "review_4": { "type": "review", "settings": { "rating": 5, "title": "Dog friendly", "review": "We switched because floor cleaners were setting off my dog's allergies. No reactions since.", "customer": "Rohit S." } },
+        "review_5": { "type": "review", "settings": { "rating": 5, "title": "Sparkling taps again", "review": "Hard water had ruined our bathroom fittings. Two sprays and the scale wipes straight off, no scrubbing.", "customer": "Verified buyer" } }
       },
-      "block_order": ["review_1", "review_2", "review_3", "review_4"],
+      "block_order": ["review_1", "review_2", "review_3", "review_4", "review_5"],
+      "settings": {}
+    },
+    "purelane_ingredients": {
+      "type": "purelane-ingredients",
+      "blocks": {
+        "ingredient_1": { "type": "ingredient", "settings": { "name": "Coconut", "copy": "Plant-derived cleansers that lift grease" } },
+        "ingredient_2": { "type": "ingredient", "settings": { "name": "Orange peel", "copy": "Natural degreaser and fresh citrus lift" } },
+        "ingredient_3": { "type": "ingredient", "settings": { "name": "Soap nut", "copy": "A traditional plant foaming agent" } },
+        "ingredient_4": { "type": "ingredient", "settings": { "name": "Neem", "copy": "Time-tested antibacterial from the tree" } },
+        "ingredient_5": { "type": "ingredient", "settings": { "name": "Lemongrass", "copy": "Clean fragrance with nothing synthetic" } }
+      },
+      "block_order": ["ingredient_1", "ingredient_2", "ingredient_3", "ingredient_4", "ingredient_5"],
       "settings": {}
     },
     "purelane_combos": {
@@ -53,7 +66,11 @@
     "purelane_products": {
       "type": "purelane-product-grid",
       "settings": { "collection": "all", "limit": 12 }
+    },
+    "purelane_footer": {
+      "type": "purelane-footer",
+      "settings": {}
     }
   },
-  "order": ["purelane_hero", "purelane_reviews", "purelane_combos", "purelane_bundles", "purelane_products"]
+  "order": ["purelane_hero", "purelane_reviews", "purelane_ingredients", "purelane_combos", "purelane_bundles", "purelane_products", "purelane_footer"]
 }
