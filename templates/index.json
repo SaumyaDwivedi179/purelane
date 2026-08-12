@@ -52,7 +52,7 @@
     },
     "purelane_products": {
       "type": "purelane-product-grid",
-      "settings": { "collection": "all", "limit": 8 }
+      "settings": { "collection": "all", "limit": 12 }
     }
   },
   "order": ["purelane_hero", "purelane_reviews", "purelane_combos", "purelane_bundles", "purelane_products"]
