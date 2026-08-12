@@ -1,0 +1,62 @@
+{{ 'purelane.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'purelane.js' | asset_url }}" defer="defer"></script>
+
+<section class="pl-section pl-hero" id="PurelaneHero-{{ section.id }}">
+  <div class="pl-shell pl-hero__grid">
+    <div>
+      <h1 class="pl-hero__title">{{ section.settings.heading | newline_to_br }}</h1>
+      <p class="pl-copy">{{ section.settings.copy | escape }}</p>
+      <div class="pl-hero__actions">
+        {% if section.settings.primary_label != blank %}<a class="pl-button pl-button--primary" href="{{ section.settings.primary_link }}">{{ section.settings.primary_label | escape }}</a>{% endif %}
+        {% if section.settings.secondary_label != blank %}<a class="pl-button pl-button--outline" href="{{ section.settings.secondary_link }}">{{ section.settings.secondary_label | escape }}</a>{% endif %}
+      </div>
+      <div class="pl-hero__promises" aria-label="Product promises">
+        {% for block in section.blocks %}<span {{ block.shopify_attributes }}>{{ block.settings.text | escape }}</span>{% endfor %}
+      </div>
+    </div>
+
+    <purelane-slider class="pl-hero__stage" aria-label="Featured products">
+      {% for featured_product in section.settings.products %}
+        <article class="pl-hero__slide" data-slide>
+          <a href="{{ featured_product.url }}">
+            {% if featured_product.featured_image %}
+              {{ featured_product.featured_image | image_url: width: 900 | image_tag: widths: '420, 640, 900', sizes: '(min-width: 990px) 42vw, 90vw', loading: 'eager', alt: featured_product.featured_image.alt | default: featured_product.title }}
+            {% else %}
+              {{ 'product-1' | placeholder_svg_tag }}
+            {% endif %}
+          </a>
+          <div class="pl-hero__tag"><span>{{ featured_product.title | escape }}</span><strong>{{ featured_product.price | money }}</strong></div>
+        </article>
+      {% else %}
+        <article class="pl-hero__slide" data-slide>{{ 'product-1' | placeholder_svg_tag }}</article>
+      {% endfor %}
+      {% if section.settings.products.size > 1 %}
+        <div class="pl-dots">
+          {% for featured_product in section.settings.products %}<button class="pl-dot" type="button" data-slide-button aria-label="Show {{ featured_product.title | escape }}"></button>{% endfor %}
+        </div>
+      {% endif %}
+    </purelane-slider>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Purelane hero",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    { "type": "textarea", "id": "heading", "label": "Heading", "default": "Clean\nThat\nLasts" },
+    { "type": "textarea", "id": "copy", "label": "Copy", "default": "Homecare that works on the toughest grime, made from plants. Kind to your home, your family and the world outside it." },
+    { "type": "product_list", "id": "products", "label": "Featured products", "limit": 3 },
+    { "type": "text", "id": "primary_label", "label": "Primary button", "default": "Shop now" },
+    { "type": "url", "id": "primary_link", "label": "Primary link" },
+    { "type": "text", "id": "secondary_label", "label": "Secondary button", "default": "Build a bundle" },
+    { "type": "url", "id": "secondary_link", "label": "Secondary link" }
+  ],
+  "blocks": [
+    { "type": "promise", "name": "Promise", "settings": [{ "type": "text", "id": "text", "label": "Text", "default": "Plant powered" }] }
+  ],
+  "max_blocks": 3,
+  "presets": [{ "name": "Purelane hero", "blocks": [{ "type": "promise" }, { "type": "promise", "settings": { "text": "Safe for kids & pets" } }, { "type": "promise", "settings": { "text": "Zero harsh chemicals" } }] }]
+}
+{% endschema %}

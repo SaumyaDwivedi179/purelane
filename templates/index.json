@@ -1,75 +1,57 @@
 {
   "sections": {
-    "image_banner": {
-      "type": "image-banner",
+    "purelane_hero": {
+      "type": "purelane-hero",
       "blocks": {
-        "heading": {
-          "type": "heading",
-          "settings": {
-            "heading": "Browse our latest products",
-            "heading_size": "h0"
-          }
-        },
-        "button": {
-          "type": "buttons",
-          "settings": {
-            "button_label_1": "Shop all",
-            "button_link_1": "shopify://collections/all",
-            "button_style_secondary_1": true,
-            "button_label_2": "",
-            "button_link_2": "",
-            "button_style_secondary_2": false
-          }
-        }
+        "promise_1": { "type": "promise", "settings": { "text": "Plant powered" } },
+        "promise_2": { "type": "promise", "settings": { "text": "Safe for kids & pets" } },
+        "promise_3": { "type": "promise", "settings": { "text": "Zero harsh chemicals" } }
       },
-      "block_order": [
-        "heading",
-        "button"
-      ],
+      "block_order": ["promise_1", "promise_2", "promise_3"],
       "settings": {
-        "image_overlay_opacity": 40,
-        "image_height": "large",
-        "desktop_content_position": "bottom-center",
-        "show_text_box": false,
-        "image_behavior": "none",
-        "desktop_content_alignment": "center",
-        "color_scheme": "scheme-3",
-        "mobile_content_alignment": "center",
-        "stack_images_on_mobile": false,
-        "show_text_below": false
+        "heading": "Clean\nThat\nLasts",
+        "copy": "Homecare that works on the toughest grime, made from plants. Kind to your home, your family and the world outside it.",
+        "primary_label": "Shop now",
+        "primary_link": "shopify://collections/all",
+        "secondary_label": "Build a bundle",
+        "secondary_link": "#bundles"
       }
     },
-    "featured_collection": {
-      "type": "featured-collection",
-      "settings": {
-        "title": "Featured products",
-        "heading_size": "h2",
-        "description": "",
-        "show_description": false,
-        "description_style": "body",
-        "collection": "all",
-        "products_to_show": 8,
-        "columns_desktop": 4,
-        "color_scheme": "scheme-1",
-        "full_width": false,
-        "show_view_all": true,
-        "view_all_style": "solid",
-        "enable_desktop_slider": false,
-        "swipe_on_mobile": false,
-        "image_ratio": "adapt",
-        "image_shape": "default",
-        "show_secondary_image": true,
-        "show_vendor": false,
-        "show_rating": false,
-        "quick_add": "none",
-        "columns_mobile": "2",
-        "padding_top": 44,
-        "padding_bottom": 36
-      }
+    "purelane_reviews": {
+      "type": "purelane-reviews",
+      "blocks": {
+        "review_1": { "type": "review", "settings": { "rating": 5, "title": "Works like a charm", "review": "Finally an eco option that cleans as well as the chemical detergent I used for years, and it smells better.", "customer": "Anita" } },
+        "review_2": { "type": "review", "settings": { "rating": 5, "title": "Best dishwash ever", "review": "Our old dishwash left my hands dry. That stopped completely after we switched.", "customer": "Priya" } },
+        "review_3": { "type": "review", "settings": { "rating": 5, "title": "Great product, great packaging", "review": "Very soft on hands with a lovely fragrance, and it feels good to use far less plastic.", "customer": "Sunita" } },
+        "review_4": { "type": "review", "settings": { "rating": 5, "title": "Dog friendly", "review": "We switched because floor cleaners were setting off my dog's allergies. No reactions since.", "customer": "Rohit S." } }
+      },
+      "block_order": ["review_1", "review_2", "review_3", "review_4"],
+      "settings": {}
+    },
+    "purelane_combos": {
+      "type": "purelane-combos",
+      "blocks": {
+        "combo_1": { "type": "combo", "settings": { "heading": "Kitchen essentials", "copy": "Everything for a sparkling kitchen, selected as one easy set.", "badge": "Most popular" } },
+        "combo_2": { "type": "combo", "settings": { "heading": "Laundry care bundle", "copy": "A softer, fresher wash and a cleaner machine in one box.", "badge": "Fresh favourite" } },
+        "combo_3": { "type": "combo", "settings": { "heading": "Complete home bundle", "copy": "Our biggest saving across kitchen, laundry, bathroom and floors.", "badge": "Best value" } }
+      },
+      "block_order": ["combo_1", "combo_2", "combo_3"],
+      "settings": {}
+    },
+    "purelane_bundles": {
+      "type": "purelane-bundles",
+      "blocks": {
+        "tier_1": { "type": "tier", "settings": { "eyebrow": "Starter", "heading": "Pick any two", "price": "₹349", "feature_1": "Choose your favourites", "feature_2": "One flat price", "feature_3": "Free shipping", "featured": false } },
+        "tier_2": { "type": "tier", "settings": { "eyebrow": "Most popular", "heading": "Pick any three", "price": "₹499", "feature_1": "Choose your favourites", "feature_2": "One flat price", "feature_3": "Free shipping", "featured": true } },
+        "tier_3": { "type": "tier", "settings": { "eyebrow": "Best value", "heading": "Pick any five", "price": "₹799", "feature_1": "Choose your favourites", "feature_2": "One flat price", "feature_3": "Free shipping", "featured": false } }
+      },
+      "block_order": ["tier_1", "tier_2", "tier_3"],
+      "settings": {}
+    },
+    "purelane_products": {
+      "type": "purelane-product-grid",
+      "settings": { "collection": "all", "limit": 8 }
     }
   },
-  "order": [
-    "image_banner",
-    "featured_collection"
-  ]
+  "order": ["purelane_hero", "purelane_reviews", "purelane_combos", "purelane_bundles", "purelane_products"]
 }

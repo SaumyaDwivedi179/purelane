@@ -1,0 +1,42 @@
+{% comment %}
+  Product card shared by Purelane product, combo and bundle sections.
+  Accepts: product, badge, benefit, eager, section_id
+{% endcomment %}
+
+<article class="pl-product-card{% unless product.available %} is-sold-out{% endunless %}">
+  <a class="pl-product-card__media" href="{{ product.url }}">
+    {% if badge != blank %}<span class="pl-pill">{{ badge | escape }}</span>{% endif %}
+    {% if product.featured_image %}
+      {{ product.featured_image
+        | image_url: width: 720
+        | image_tag:
+          widths: '240, 360, 540, 720',
+          sizes: '(min-width: 990px) 25vw, 70vw',
+          loading: 'lazy',
+          alt: product.featured_image.alt | default: product.title
+      }}
+    {% else %}
+      {{ 'product-1' | placeholder_svg_tag: 'pl-product-card__placeholder' }}
+    {% endif %}
+  </a>
+
+  <div class="pl-product-card__body">
+    <h3><a href="{{ product.url }}">{{ product.title | escape }}</a></h3>
+    {% if benefit != blank %}<p>{{ benefit | escape }}</p>{% endif %}
+    <div class="pl-price">
+      <strong>{{ product.price | money }}</strong>
+      {% if product.compare_at_price > product.price %}<s>{{ product.compare_at_price | money }}</s>{% endif %}
+    </div>
+
+    {% assign form_id = 'pl-add-' | append: section_id | append: '-' | append: product.id %}
+    <product-form data-section-id="{{ section_id }}">
+      {% form 'product', product, id: form_id, class: 'pl-product-form', novalidate: 'novalidate', data-type: 'add-to-cart-form' %}
+        <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}" {% unless product.available %}disabled{% endunless %}>
+        <button class="pl-button pl-button--outline" type="submit" name="add" {% unless product.available %}disabled{% endunless %}>
+          <span>{% if product.available %}Add to cart{% else %}Sold out{% endif %}</span>
+          {% render 'loading-spinner' %}
+        </button>
+      {% endform %}
+    </product-form>
+  </div>
+</article>
