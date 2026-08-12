@@ -21,7 +21,7 @@
           </div>
           <div class="pl-combo__body">
             {% if block.settings.badge != blank %}<span class="pl-kicker">{{ block.settings.badge | escape }}</span>{% endif %}
-            <h3>{% if bundle != blank %}{{ bundle.title | escape }}{% else %}{{ block.settings.heading | escape }}{% endif %}</h3>
+            <h3>{% if block.settings.heading != blank %}{{ block.settings.heading | escape }}{% else %}{{ bundle.title | escape }}{% endif %}</h3>
             <span class="pl-combo__products">{% if block.settings.product_3 != blank %}3 products{% elsif block.settings.product_2 != blank %}2 products{% else %}Curated set{% endif %}</span>
             <p>{{ block.settings.copy | escape }}</p>
             {% if bundle != blank %}<div class="pl-price"><strong>{{ bundle.price | money }}</strong>{% if bundle.compare_at_price > bundle.price %}<s>{{ bundle.compare_at_price | money }}</s>{% endif %}</div><a class="pl-button pl-button--outline" href="{{ bundle.url }}">Shop bundle</a>{% endif %}
@@ -57,4 +57,3 @@
   "presets": [{ "name": "Purelane combos", "blocks": [{ "type": "combo" }, { "type": "combo", "settings": { "heading": "Laundry care bundle", "badge": "Fresh favourite" } }, { "type": "combo", "settings": { "heading": "Complete home bundle", "badge": "Best value" } }] }]
 }
 {% endschema %}
-

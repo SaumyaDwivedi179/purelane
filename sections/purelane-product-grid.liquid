@@ -9,12 +9,23 @@
     </header>
 
     <div class="pl-product-grid">
-      {% for product in section.settings.collection.products limit: section.settings.limit %}
-        {% liquid
-          assign badge = product.metafields.custom.card_badge.value
-          assign benefit = product.metafields.custom.short_benefit.value | default: product.description | strip_html | truncatewords: 13
-        %}
-        {% render 'purelane-product-card', product: product, badge: badge, benefit: benefit, section_id: section.id %}
+      {% assign shown_products = 0 %}
+      {% for product in section.settings.collection.products %}
+        {% if product.type != 'Bundle' and shown_products < section.settings.limit %}
+          {% liquid
+            assign badge = product.metafields.custom.card_badge.value
+            if badge == blank and product.tags contains 'best-seller'
+              assign badge = 'Best seller'
+            elsif badge == blank and product.tags contains 'top-rated'
+              assign badge = 'Top rated'
+            elsif badge == blank and product.tags contains 'new'
+              assign badge = 'New'
+            endif
+            assign benefit = product.metafields.custom.short_benefit.value | default: product.description | strip_html | truncatewords: 13
+          %}
+          {% render 'purelane-product-card', product: product, badge: badge, benefit: benefit, section_id: section.id %}
+          {% assign shown_products = shown_products | plus: 1 %}
+        {% endif %}
       {% else %}
         {% for i in (1..4) %}<article class="pl-product-card"><div class="pl-product-card__media">{{ 'product-' | append: i | placeholder_svg_tag }}</div><div class="pl-product-card__body"><h3>Select a collection</h3><p>Products, prices and availability will come from Shopify.</p></div></article>{% endfor %}
       {% endfor %}
@@ -37,4 +48,3 @@
   "presets": [{ "name": "Purelane product grid" }]
 }
 {% endschema %}
-

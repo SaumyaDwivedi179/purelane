@@ -3,9 +3,9 @@
     "purelane_hero": {
       "type": "purelane-hero",
       "blocks": {
-        "promise_1": { "type": "promise", "settings": { "text": "Plant powered" } },
-        "promise_2": { "type": "promise", "settings": { "text": "Safe for kids & pets" } },
-        "promise_3": { "type": "promise", "settings": { "text": "Zero harsh chemicals" } }
+        "promise_1": { "type": "promise", "settings": { "icon": "♧", "text": "Plant powered" } },
+        "promise_2": { "type": "promise", "settings": { "icon": "♢", "text": "Safe for kids & pets" } },
+        "promise_3": { "type": "promise", "settings": { "icon": "⊘", "text": "Zero harsh chemicals" } }
       },
       "block_order": ["promise_1", "promise_2", "promise_3"],
       "settings": {
@@ -15,8 +15,8 @@
         "copy": "Homecare that works on the toughest grime, made from plants. Kind to your home, your family and the world outside it.",
         "primary_label": "Shop now",
         "primary_link": "shopify://collections/all",
-        "secondary_label": "Build a bundle",
-        "secondary_link": "#bundles"
+        "secondary_label": "How it works",
+        "secondary_link": "#combos"
       }
     },
     "purelane_reviews": {

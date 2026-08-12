@@ -1,40 +1,76 @@
 {{ 'purelane.css' | asset_url | stylesheet_tag }}
 <script src="{{ 'purelane.js' | asset_url }}" defer="defer"></script>
 
-<section class="pl-section pl-hero" id="PurelaneHero-{{ section.id }}">
+<div class="pl-ticker" aria-hidden="true">
+  <div class="pl-ticker__track">
+    {% for repeat in (1..2) %}
+      <span>Free shipping <b>on every bundle across India</b></span>
+      <span>100% plant-based <b>and non-toxic</b></span>
+      <span>Loved by <b>30,000+ happy homes</b></span>
+      <span>Buy 3 <b>at flat ₹499</b></span>
+    {% endfor %}
+  </div>
+</div>
+
+<header class="pl-header">
+  <div class="pl-navpill pl-glass">
+    <a class="pl-brand" href="#top" aria-label="Purelane home">
+      <span class="pl-brand__mark">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 20.5 8v8L12 21 3.5 16V8L12 3Z"/><path d="M12 12 20.5 8M12 12v9M12 12 3.5 8"/></svg>
+      </span>
+      <span><b>Purelane</b><small>Clean, simply</small></span>
+    </a>
+    <nav class="pl-nav" aria-label="Main navigation">
+      <a href="#top">Home</a><a href="#reviews">Reviews</a><a href="#combos">Combos</a><a href="#bundles">Bundles</a><a href="#shop">Shop</a>
+    </nav>
+    <div class="pl-navtools">
+      <a href="{{ routes.search_url }}" aria-label="Search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></a>
+      <a href="{{ routes.account_url }}" aria-label="Account"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="8" r="3.6"/><path d="M5 20c0-3.6 3.1-5.6 7-5.6s7 2 7 5.6"/></svg></a>
+      <a href="{{ routes.cart_url }}" aria-label="Cart, {{ cart.item_count }} items"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M4 6h2l2.2 10.4a1.6 1.6 0 0 0 1.6 1.3h7.6a1.6 1.6 0 0 0 1.6-1.3L20.5 9H6.4"/><circle cx="10" cy="20.5" r="1.1"/><circle cx="17.5" cy="20.5" r="1.1"/></svg><span>{{ cart.item_count }}</span></a>
+    </div>
+  </div>
+</header>
+
+<section class="pl-section pl-hero" id="top">
+  <div class="pl-water" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
   <div class="pl-shell pl-hero__grid">
-    <div>
+    <div class="pl-hero__copy">
       <h1 class="pl-hero__title">{{ section.settings.heading | newline_to_br }}<br><em>{{ section.settings.accent_heading | escape }}</em></h1>
+      <div class="pl-leaf-rule"><i></i><span>♧</span><i></i></div>
       <p class="pl-copy">{{ section.settings.copy | escape }}</p>
       <div class="pl-hero__actions">
-        {% if section.settings.primary_label != blank %}<a class="pl-button pl-button--primary" href="{{ section.settings.primary_link }}">{{ section.settings.primary_label | escape }}</a>{% endif %}
+        {% if section.settings.primary_label != blank %}<a class="pl-button pl-button--primary" href="{{ section.settings.primary_link }}">{{ section.settings.primary_label | escape }} <span>→</span></a>{% endif %}
         {% if section.settings.secondary_label != blank %}<a class="pl-button pl-button--outline" href="{{ section.settings.secondary_link }}">{{ section.settings.secondary_label | escape }}</a>{% endif %}
-      </div>
-      <div class="pl-hero__promises" aria-label="Product promises">
-        {% for block in section.blocks %}<span {{ block.shopify_attributes }}>{{ block.settings.text | escape }}</span>{% endfor %}
       </div>
     </div>
 
+    {% for featured_product in section.settings.products %}
+      {% case forloop.index %}
+        {% when 1 %}{% assign p1 = featured_product %}
+        {% when 2 %}{% assign p2 = featured_product %}
+        {% when 3 %}{% assign p3 = featured_product %}
+      {% endcase %}
+    {% endfor %}
     <purelane-slider class="pl-hero__stage" aria-label="Featured products">
-      {% for featured_product in section.settings.products %}
-        <article class="pl-hero__slide" data-slide>
-          <a href="{{ featured_product.url }}">
-            {% if featured_product.featured_image %}
-              {{ featured_product.featured_image | image_url: width: 900 | image_tag: widths: '420, 640, 900', sizes: '(min-width: 990px) 42vw, 90vw', loading: 'eager', alt: featured_product.featured_image.alt | default: featured_product.title }}
-            {% else %}
-              {{ 'product-1' | placeholder_svg_tag }}
-            {% endif %}
-          </a>
-          <div class="pl-hero__tag"><span>{{ featured_product.title | escape }}</span><strong>{{ featured_product.price | money }}</strong></div>
-        </article>
-      {% else %}
-        <article class="pl-hero__slide" data-slide>{{ 'product-1' | placeholder_svg_tag }}</article>
-      {% endfor %}
-      {% if section.settings.products.size > 1 %}
-        <div class="pl-dots">
-          {% for featured_product in section.settings.products %}<button class="pl-dot" type="button" data-slide-button aria-label="Show {{ featured_product.title | escape }}"></button>{% endfor %}
-        </div>
-      {% endif %}
+      <article class="pl-hero__slide" data-slide>
+        {% if p1.featured_image %}{{ p1.featured_image | image_url: width: 700 | image_tag: class: 'pl-bottle pl-bottle--large', loading: 'eager', alt: p1.title }}{% endif %}
+        <div class="pl-price-tag"><small>Single bottle</small><strong>{{ p1.price | money }}</strong>{% if p1.compare_at_price > p1.price %}<s>{{ p1.compare_at_price | money }}</s>{% endif %}</div>
+      </article>
+      <article class="pl-hero__slide" data-slide>
+        {% if p2.featured_image %}{{ p2.featured_image | image_url: width: 700 | image_tag: class: 'pl-bottle pl-bottle--small', loading: 'eager', alt: p2.title }}{% endif %}
+        {% if p1.featured_image %}{{ p1.featured_image | image_url: width: 700 | image_tag: class: 'pl-bottle pl-bottle--large', loading: 'eager', alt: p1.title }}{% endif %}
+        <div class="pl-price-tag"><small>Any 2 products</small><strong>₹349</strong><s>₹598</s><em>Save ₹249</em></div>
+      </article>
+      <article class="pl-hero__slide" data-slide>
+        {% if p2.featured_image %}{{ p2.featured_image | image_url: width: 700 | image_tag: class: 'pl-bottle pl-bottle--small', loading: 'eager', alt: p2.title }}{% endif %}
+        {% if p1.featured_image %}{{ p1.featured_image | image_url: width: 700 | image_tag: class: 'pl-bottle pl-bottle--large', loading: 'eager', alt: p1.title }}{% endif %}
+        {% if p3.featured_image %}{{ p3.featured_image | image_url: width: 700 | image_tag: class: 'pl-bottle pl-bottle--medium', loading: 'eager', alt: p3.title }}{% endif %}
+        <div class="pl-price-tag"><small>Any 3 products</small><strong>₹499</strong><s>₹897</s><em>Save ₹398</em></div>
+      </article>
+      <div class="pl-dots"><button class="pl-dot" type="button" data-slide-button aria-label="Show one product"></button><button class="pl-dot" type="button" data-slide-button aria-label="Show two products"></button><button class="pl-dot" type="button" data-slide-button aria-label="Show three products"></button></div>
+      <aside class="pl-promises" aria-label="Product promises">
+        {% for block in section.blocks %}<div {{ block.shopify_attributes }}><span>{{ block.settings.icon }}</span>{{ block.settings.text | escape }}</div>{% endfor %}
+      </aside>
     </purelane-slider>
   </div>
 </section>
@@ -51,13 +87,11 @@
     { "type": "product_list", "id": "products", "label": "Featured products", "limit": 3 },
     { "type": "text", "id": "primary_label", "label": "Primary button", "default": "Shop now" },
     { "type": "url", "id": "primary_link", "label": "Primary link" },
-    { "type": "text", "id": "secondary_label", "label": "Secondary button", "default": "Build a bundle" },
+    { "type": "text", "id": "secondary_label", "label": "Secondary button", "default": "How it works" },
     { "type": "url", "id": "secondary_link", "label": "Secondary link" }
   ],
-  "blocks": [
-    { "type": "promise", "name": "Promise", "settings": [{ "type": "text", "id": "text", "label": "Text", "default": "Plant powered" }] }
-  ],
+  "blocks": [{ "type": "promise", "name": "Promise", "settings": [{ "type": "text", "id": "icon", "label": "Icon", "default": "♧" }, { "type": "text", "id": "text", "label": "Text", "default": "Plant powered" }] }],
   "max_blocks": 3,
-  "presets": [{ "name": "Purelane hero", "blocks": [{ "type": "promise" }, { "type": "promise", "settings": { "text": "Safe for kids & pets" } }, { "type": "promise", "settings": { "text": "Zero harsh chemicals" } }] }]
+  "presets": [{ "name": "Purelane hero", "blocks": [{ "type": "promise" }, { "type": "promise", "settings": { "icon": "♢", "text": "Safe for kids & pets" } }, { "type": "promise", "settings": { "icon": "⊘", "text": "Zero harsh chemicals" } }] }]
 }
 {% endschema %}

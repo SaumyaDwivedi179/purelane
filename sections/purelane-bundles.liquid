@@ -12,7 +12,7 @@
         {% assign product = block.settings.product %}
         <article class="pl-tier" data-featured="{{ block.settings.featured }}" {{ block.shopify_attributes }}>
           <span class="pl-kicker">{{ block.settings.eyebrow | escape }}</span>
-          <h3>{% if product != blank %}{{ product.title | escape }}{% else %}{{ block.settings.heading | escape }}{% endif %}</h3>
+          <h3>{% if block.settings.heading != blank %}{{ block.settings.heading | escape }}{% else %}{{ product.title | escape }}{% endif %}</h3>
           <span class="pl-tier__price">{% if product != blank %}{{ product.price | money }}{% else %}{{ block.settings.price | escape }}{% endif %}</span>
           <ul><li>{{ block.settings.feature_1 | escape }}</li><li>{{ block.settings.feature_2 | escape }}</li><li>{{ block.settings.feature_3 | escape }}</li></ul>
           {% if product != blank %}<a class="pl-button {% if block.settings.featured %}pl-button--primary{% else %}pl-button--outline{% endif %}" href="{{ product.url }}">Choose bundle</a>{% endif %}
@@ -48,4 +48,3 @@
   "presets": [{ "name": "Purelane bundles", "blocks": [{ "type": "tier" }, { "type": "tier", "settings": { "eyebrow": "Most popular", "heading": "Pick any three", "price": "₹499", "featured": true } }, { "type": "tier", "settings": { "eyebrow": "Best value", "heading": "Pick any five", "price": "₹799" } }] }]
 }
 {% endschema %}
-
