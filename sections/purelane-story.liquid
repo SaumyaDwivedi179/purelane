@@ -1,12 +1,12 @@
 {{ 'purelane.css' | asset_url | stylesheet_tag }}
 
-<section class="pl-section pl-story" id="how" data-pl-depth="2">
+<section class="pl-section pl-story" id="how" data-scene="2" data-pl-depth="2">
   <div class="pl-shell pl-pillar-grid">
     {% for block in section.blocks %}<article class="pl-story-card pl-glass pl-reveal" {{ block.shopify_attributes }}><span class="pl-story-card__icon">{% cycle '♧','♢','♡' %}</span><h2>{{ block.settings.heading | escape }}</h2><p>{{ block.settings.copy | escape }}</p><a class="pl-button pl-button--outline" href="{{ block.settings.link | default: '#shop' }}">Learn more</a></article>{% endfor %}
   </div>
 </section>
 
-<section class="pl-section pl-proof" id="proof" data-pl-depth="3">
+<section class="pl-section pl-proof" id="proof" data-scene="3" data-pl-depth="3">
   <div class="pl-shell"><div class="pl-proof__panel pl-glass pl-reveal">
     <div><span class="pl-kicker">{{ section.settings.kicker | escape }}</span><h2 class="pl-heading">{{ section.settings.proof_heading | newline_to_br }}</h2><p class="pl-copy">{{ section.settings.proof_copy | escape }}</p><a class="pl-button pl-button--primary" href="#ingredients">See the ingredient list →</a></div>
     {% assign proof_product = section.settings.product %}<div class="pl-proof__product pl-glass">{% if proof_product.featured_image %}{{ proof_product.featured_image | image_url: width: 500 | image_tag: loading: 'lazy', alt: proof_product.title }}{% else %}{{ 'product-1' | placeholder_svg_tag }}{% endif %}<b>{{ proof_product.title | default: 'Kitchen cleaner' }}</b><span>Foam lifts grease, no scrubbing</span></div>

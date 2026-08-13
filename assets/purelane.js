@@ -1,58 +1,117 @@
-if (!customElements.get('purelane-slider')) {
-  customElements.define('purelane-slider', class extends HTMLElement {
-    connectedCallback() {
-      if (this.initialized) return;
-      this.initialized = true;
-      this.slides = [...this.querySelectorAll('[data-slide]')];
-      this.buttons = [...this.querySelectorAll('[data-slide-button]')];
-      if (this.slides.length < 2) return;
+(() => {
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-      this.show = (index) => {
-        this.index = index;
-        this.slides.forEach((slide, i) => slide.toggleAttribute('data-active', i === index));
-        this.buttons.forEach((button, i) => {
-          button.toggleAttribute('data-active', i === index);
-          button.setAttribute('aria-current', i === index ? 'true' : 'false');
-        });
-      };
+  const reveals = document.querySelectorAll('.rv,.pl-reveal');
+  if ('IntersectionObserver' in window && !reduce) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('in', 'is-visible');
+        observer.unobserve(entry.target);
+      });
+    }, { rootMargin: '0px 0px -12% 0px', threshold: .12 });
+    reveals.forEach((element) => observer.observe(element));
+  } else {
+    reveals.forEach((element) => element.classList.add('in', 'is-visible'));
+  }
 
-      this.buttons.forEach((button, index) => button.addEventListener('click', () => this.show(index)));
-      this.show(0);
+  const scenes = [...document.querySelectorAll('.scene')];
+  const zones = [...document.querySelectorAll('[data-scene],[data-pl-depth]')];
+  const stage = document.getElementById('scenes') || document.querySelector('.pl-scenes');
+  const railLinks = [...document.querySelectorAll('.rail a,.pl-progress a')];
+  const railTargets = railLinks.map((link) => document.querySelector(link.getAttribute('href')));
+  const header = document.getElementById('hdr') || document.querySelector('.pl-header');
+  const product = document.getElementById('heroProd');
+  let currentScene = 0;
+  let raf = null;
+  let mx = 0;
+  let my = 0;
 
-      if (!matchMedia('(prefers-reduced-motion: reduce)').matches && !window.Shopify?.designMode) {
-        this.timer = setInterval(() => this.show((this.index + 1) % this.slides.length), 4500);
+  const setScene = (sceneNumber) => {
+    if (sceneNumber === currentScene) return;
+    currentScene = sceneNumber;
+    scenes.forEach((scene, index) => scene.classList.toggle('on', index + 1 === sceneNumber));
+    stage?.setAttribute('data-d', String(sceneNumber));
+    stage?.setAttribute('data-depth', String(sceneNumber));
+  };
+
+  const pickScene = () => {
+    const focus = scrollY + innerHeight * .5;
+    let sceneNumber = 1;
+    zones.forEach((zone) => {
+      const top = zone.getBoundingClientRect().top + scrollY;
+      if (top <= focus) sceneNumber = Number(zone.dataset.scene || zone.dataset.plDepth) || sceneNumber;
+    });
+    setScene(sceneNumber);
+  };
+
+  const syncRail = () => {
+    const mid = scrollY + innerHeight * .42;
+    let active = 0;
+    let activeTop = -Infinity;
+    railTargets.forEach((target, index) => {
+      if (!target) return;
+      const top = target.getBoundingClientRect().top + scrollY;
+      if (top <= mid && top >= activeTop) {
+        active = index;
+        activeTop = top;
+      }
+    });
+    railLinks.forEach((link, index) => {
+      link.classList.toggle('on', index === active);
+      link.toggleAttribute('data-active', index === active);
+    });
+  };
+
+  const frame = () => {
+    raf = null;
+    const y = scrollY || pageYOffset;
+    header?.classList.toggle('up', y > 90);
+    header?.classList.toggle('is-scrolled', y > 24);
+
+    if (!reduce) {
+      document.querySelectorAll('#water .wl').forEach((layer, index) => {
+        const d = [.05, .09, .03, .02][index] || .05;
+        layer.style.setProperty('--px', `${(mx * d * 130).toFixed(1)}px`);
+        layer.style.setProperty('--py', `${(-y * d + my * d * 90).toFixed(1)}px`);
+      });
+      if (product) {
+        const f = Math.min(y / 700, 1);
+        product.style.transform = `translate3d(${(mx * -16).toFixed(2)}px,${(-f * 54 + my * -10).toFixed(2)}px,0) scale(${(1 - f * .06).toFixed(3)})`;
+        product.style.opacity = (1 - f * .55).toFixed(3);
       }
     }
 
-    disconnectedCallback() {
-      clearInterval(this.timer);
-    }
-  });
-}
+    syncRail();
+    pickScene();
+  };
 
-const purelaneHeader = document.querySelector('.pl-header');
-if (purelaneHeader) {
-  const updatePurelaneHeader = () => purelaneHeader.classList.toggle('is-scrolled', scrollY > 24);
-  updatePurelaneHeader();
-  addEventListener('scroll', updatePurelaneHeader, { passive: true });
-}
+  const queue = () => {
+    if (!raf) raf = requestAnimationFrame(frame);
+  };
+  addEventListener('scroll', queue, { passive: true });
+  addEventListener('resize', queue);
+  if (!reduce && matchMedia('(min-width: 1024px)').matches) {
+    addEventListener('mousemove', (event) => {
+      mx = (event.clientX / innerWidth - .5) * 2;
+      my = (event.clientY / innerHeight - .5) * 2;
+      queue();
+    }, { passive: true });
+  }
 
-const purelaneReveals = document.querySelectorAll('.pl-reveal');
-const purelaneProgress = [...document.querySelectorAll('.pl-progress a')];
-if ('IntersectionObserver' in window) {
-  const revealObserver = new IntersectionObserver((entries) => entries.forEach((entry) => {
-    if (entry.isIntersecting) entry.target.classList.add('is-visible');
-  }), { threshold: .12 });
-  purelaneReveals.forEach((element) => revealObserver.observe(element));
+  const slides = [...document.querySelectorAll('#hstage .hslide')];
+  const dots = [...document.querySelectorAll('#hdots button')];
+  if (slides.length) {
+    let index = 0;
+    const show = (next) => {
+      index = (next + slides.length) % slides.length;
+      slides.forEach((slide, slideIndex) => slide.classList.toggle('on', slideIndex === index));
+      dots.forEach((dot, dotIndex) => dot.classList.toggle('on', dotIndex === index));
+    };
+    dots.forEach((dot, dotIndex) => dot.addEventListener('click', () => show(dotIndex)));
+    show(0);
+    if (!reduce && !window.Shopify?.designMode) setInterval(() => show(index + 1), 4500);
+  }
 
-  const sectionObserver = new IntersectionObserver((entries) => entries.forEach((entry) => {
-    if (!entry.isIntersecting) return;
-    const link = purelaneProgress.find((item) => item.hash === `#${entry.target.id}`);
-    if (link) purelaneProgress.forEach((item) => item.toggleAttribute('data-active', item === link));
-    const depth = entry.target.dataset.plDepth;
-    if (depth) document.querySelector('.pl-scenes')?.setAttribute('data-depth', depth);
-  }), { rootMargin: '-35% 0px -55%' });
-  document.querySelectorAll('[id], [data-pl-depth]').forEach((section) => sectionObserver.observe(section));
-} else {
-  purelaneReveals.forEach((element) => element.classList.add('is-visible'));
-}
+  queue();
+})();
