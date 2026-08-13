@@ -4,7 +4,7 @@
 <section class="pl-section pl-products" id="shop" data-scene="3">
   <div class="pl-shell">
     <header class="pl-section-head">
-      <div><span class="pl-kicker">{{ section.settings.kicker | escape }}</span><h2 class="pl-heading">{{ section.settings.heading | escape }}</h2></div>
+      <div><span class="pl-kicker">{{ section.settings.kicker | escape }}</span><h2 class="pl-heading">{{ section.settings.heading | escape }}</h2><div class="pl-leaf-rule"><i></i><span aria-hidden="true">&#9827;</span><i></i></div></div>
       <p class="pl-copy">{{ section.settings.copy | escape }}</p>
     </header>
 
@@ -30,7 +30,6 @@
         {% for i in (1..4) %}<article class="pl-product-card"><div class="pl-product-card__media">{{ 'product-' | append: i | placeholder_svg_tag }}</div><div class="pl-product-card__body"><h3>Select a collection</h3><p>Products, prices and availability will come from Shopify.</p></div></article>{% endfor %}
       {% endfor %}
     </div>
-    <div class="pl-range pl-glass pl-reveal"><div><span class="pl-kicker">The full range</span><h2 class="pl-heading">Every room, one shelf</h2></div><p class="pl-copy">Floors, taps, kitchen, laundry, bathroom and hands. Plant-based formulas for the whole home.</p><div class="pl-range__products">{% assign range_count = 0 %}{% for product in section.settings.collection.products %}{% if product.type != 'Bundle' and product.featured_image and range_count < 10 %}{{ product.featured_image | image_url: width: 220 | image_tag: loading: 'lazy', alt: product.title }}{% assign range_count = range_count | plus: 1 %}{% endif %}{% endfor %}</div></div>
   </div>
 </section>
 

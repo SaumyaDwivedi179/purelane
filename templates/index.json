@@ -56,27 +56,28 @@
     "purelane_combos": {
       "type": "purelane-combos",
       "blocks": {
-        "combo_1": { "type": "combo", "settings": { "bundle_product": "kitchen-essentials-bundle", "product_1": "foaming-kitchen-cleaner", "product_2": "tap-limescale-cleaner", "product_3": "copper-bronze-brass-cleaner", "heading": "Kitchen essentials", "copy": "Everything for a sparkling kitchen, selected as one easy set.", "badge": "Most popular" } },
-        "combo_2": { "type": "combo", "settings": { "bundle_product": "bathroom-deep-clean-bundle", "product_1": "tap-limescale-cleaner", "product_2": "non-toxic-toilet-cleaner", "heading": "Laundry care bundle", "copy": "A softer, fresher wash and a cleaner machine in one box.", "badge": "Fresh favourite" } },
-        "combo_3": { "type": "combo", "settings": { "bundle_product": "complete-home-bundle", "product_1": "foaming-kitchen-cleaner", "product_2": "plant-based-laundry-detergent", "product_3": "herbal-floor-cleaner", "heading": "Complete home bundle", "copy": "Our biggest saving across kitchen, laundry, bathroom and floors.", "badge": "Best value" } },
-        "combo_4": { "type": "combo", "settings": { "bundle_product": "bathroom-deep-clean-bundle", "product_1": "non-toxic-toilet-cleaner", "product_2": "tap-limescale-cleaner", "product_3": "copper-bronze-brass-cleaner", "heading": "Bathroom deep clean", "copy": "A complete bathroom refresh in one box.", "badge": "You save ₹398" } }
+        "combo_1": { "type": "combo", "settings": { "bundle_product": "kitchen-essentials-bundle", "product_1": "foaming-kitchen-cleaner", "product_2": "copper-bronze-brass-cleaner", "product_3": "tap-limescale-cleaner", "art_1": "product", "art_2": "dish", "art_3": "product", "item_1_label": "Cuts grease instantly", "item_2_label": "Squeaky clean dishes", "item_3_label": "Melts hard water stains", "product_count": 3, "heading": "Kitchen essentials", "copy": "Includes: Foaming Kitchen Cleaner, Dishwash Gel & Tap Cleaner. Everything for a sparkling kitchen, no need to pick separately.", "saving_label": "You save ₹398", "flag": "Most popular" } },
+        "combo_2": { "type": "combo", "settings": { "bundle_product": "bathroom-deep-clean-bundle", "product_1": "plant-based-laundry-detergent", "product_2": "gentle-hydrating-handwash", "product_3": "washing-machine-cleaner", "art_1": "product", "art_2": "leaf", "art_3": "product", "item_1_label": "Removes tough stains & odour", "item_2_label": "Softens & freshens every wash", "item_3_label": "Deep-cleans your machine", "product_count": 3, "heading": "Laundry care bundle", "copy": "Includes: Laundry Detergent, Fabric Conditioner & Machine Cleaner Powder. Softer, fresher wash, all in one box.", "saving_label": "You save ₹448" } },
+        "combo_3": { "type": "combo", "settings": { "bundle_product": "complete-home-bundle", "product_1": "foaming-kitchen-cleaner", "product_2": "herbal-floor-cleaner", "product_3": "gentle-hydrating-handwash", "art_1": "product", "art_2": "product", "art_3": "product", "item_1_label": "Cuts grease instantly", "item_2_label": "Kills 99.9% germs", "item_3_label": "Gentle hydration for hands", "product_count": 5, "heading": "Complete home bundle", "copy": "Includes: Kitchen Cleaner, Laundry Detergent, Floor Cleaner, Toilet Cleaner & Handwash. Our biggest saving box.", "saving_label": "Biggest saving", "flag": "Best value", "featured": true } },
+        "combo_4": { "type": "combo", "settings": { "bundle_product": "bathroom-deep-clean-bundle", "product_1": "non-toxic-toilet-cleaner", "product_2": "tap-limescale-cleaner", "product_3": "copper-bronze-brass-cleaner", "art_1": "product", "art_2": "product", "art_3": "eraser", "item_1_label": "Kills 99.9% germs", "item_2_label": "Melts hard water stains", "item_3_label": "Scrubs away soap scum", "product_count": 3, "heading": "Bathroom deep clean", "copy": "Includes: Toilet Cleaner, Tap Cleaner & Magic Eraser. A complete bathroom refresh in one box.", "saving_label": "You save ₹398" } },
+        "combo_5": { "type": "combo", "settings": { "bundle_product": "bathroom-deep-clean-bundle", "product_1": "tap-limescale-cleaner", "product_2": "non-toxic-toilet-cleaner", "art_1": "product", "art_2": "product", "item_1_label": "Melts hard water stains", "item_2_label": "Fights limescale in the bowl", "product_count": 2, "heading": "Hard water solution kit", "copy": "Includes: Tap Cleaner & Toilet Cleaner. A quick, focused fix for hard water stains across the home.", "saving_label": "You save ₹249" } }
       },
-      "block_order": ["combo_1", "combo_2", "combo_3", "combo_4"],
+      "block_order": [ "combo_1", "combo_2", "combo_3", "combo_4", "combo_5" ],
       "settings": { "kicker": "Pre-built to save you money", "heading": "Best selling combos", "copy": "Swipe through the boxes people order most. Each one is already priced below buying the same products on their own." }
     },
     "purelane_bundles": {
       "type": "purelane-bundles",
       "blocks": {
-        "tier_1": { "type": "tier", "settings": { "product": "kitchen-essentials-bundle", "eyebrow": "Starter", "heading": "Pick any two", "price": "₹349", "feature_1": "Choose your favourites", "feature_2": "One flat price", "feature_3": "Free shipping", "featured": false } },
-        "tier_2": { "type": "tier", "settings": { "product": "bathroom-deep-clean-bundle", "eyebrow": "Most popular", "heading": "Pick any three", "price": "₹499", "feature_1": "Choose your favourites", "feature_2": "One flat price", "feature_3": "Free shipping", "featured": true } },
-        "tier_3": { "type": "tier", "settings": { "product": "complete-home-bundle", "eyebrow": "Best value", "heading": "Pick any five", "price": "₹799", "feature_1": "Choose your favourites", "feature_2": "One flat price", "feature_3": "Free shipping", "featured": false } }
+        "tier_1": { "type": "tier", "settings": { "product": "kitchen-essentials-bundle", "eyebrow": "Starter", "quantity": 2, "price": "₹349", "compare_price": "₹598", "per_product": "Flat ₹174 per product", "feature_1": "Pick any two products", "feature_2": "Free shipping across India", "feature_3": "", "featured": false } },
+        "tier_2": { "type": "tier", "settings": { "product": "bathroom-deep-clean-bundle", "eyebrow": "Most popular", "quantity": 3, "price": "₹499", "compare_price": "₹897", "per_product": "Flat ₹166 per product", "feature_1": "Pick any three products", "feature_2": "Covers kitchen and laundry", "feature_3": "Free shipping across India", "featured": true } },
+        "tier_3": { "type": "tier", "settings": { "product": "complete-home-bundle", "eyebrow": "Whole home", "quantity": 5, "price": "₹799", "compare_price": "₹1495", "per_product": "Flat ₹160 per product", "feature_1": "Pick any five products", "feature_2": "Every room in one order", "feature_3": "Free shipping across India", "featured": false } }
       },
       "block_order": ["tier_1", "tier_2", "tier_3"],
       "settings": { "kicker": "Build your bundle", "heading": "One box. Every room.", "copy": "Mix and match across kitchen, laundry, home and skin. One flat price, no code needed, free shipping either way." }
     },
     "purelane_products": {
       "type": "purelane-product-grid",
-      "settings": { "collection": "all", "limit": 12, "kicker": "Bestsellers", "heading": "Loved by 30,000 homes" }
+      "settings": { "collection": "all", "limit": 8, "kicker": "Bestsellers", "heading": "Loved by 30,000 homes" }
     },
     "purelane_after_shop": {
       "type": "purelane-after-shop",

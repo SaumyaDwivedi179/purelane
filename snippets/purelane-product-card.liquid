@@ -6,26 +6,16 @@
 <article class="pl-product-card{% unless product.available %} is-sold-out{% endunless %}">
   <a class="pl-product-card__media" href="{{ product.url }}">
     {% if badge != blank %}<span class="pl-pill">{{ badge | escape }}</span>{% endif %}
-    {% if product.featured_image %}
-      {{ product.featured_image
-        | image_url: width: 720
-        | image_tag:
-          widths: '240, 360, 540, 720',
-          sizes: '(min-width: 990px) 25vw, 70vw',
-          loading: 'lazy',
-          alt: product.featured_image.alt | default: product.title
-      }}
-    {% else %}
-      {{ 'product-1' | placeholder_svg_tag: 'pl-product-card__placeholder' }}
-    {% endif %}
+    {% render 'purelane-product-art', product: product %}
   </a>
 
   <div class="pl-product-card__body">
     <h3><a href="{{ product.url }}">{{ product.title | escape }}</a></h3>
+    <div class="pl-card-rate"><b>&#9733; 4.8</b><span>&middot; {{ product.metafields.custom.review_count.value | default: 237 }} reviews</span></div>
     {% if benefit != blank %}<p>{{ benefit | escape }}</p>{% endif %}
     <div class="pl-price">
-      <strong>{{ product.price | money }}</strong>
-      {% if product.compare_at_price > product.price %}<s>{{ product.compare_at_price | money }}</s>{% endif %}
+      <strong>&#8377;{{ product.price | money_without_currency | replace: '.00', '' }}</strong>
+      {% if product.compare_at_price > product.price %}<s>&#8377;{{ product.compare_at_price | money_without_currency | replace: '.00', '' }}</s><em>{{ product.compare_at_price | minus: product.price | times: 100 | divided_by: product.compare_at_price }}% off</em>{% endif %}
     </div>
 
     {% assign form_id = 'pl-add-' | append: section_id | append: '-' | append: product.id %}

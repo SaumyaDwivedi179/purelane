@@ -11,6 +11,7 @@
       });
     }, { rootMargin: '0px 0px -12% 0px', threshold: .12 });
     reveals.forEach((element) => observer.observe(element));
+    document.documentElement.classList.add('pl-motion-ready');
   } else {
     reveals.forEach((element) => element.classList.add('in', 'is-visible'));
   }

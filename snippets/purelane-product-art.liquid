@@ -1,0 +1,52 @@
+{% liquid
+  assign art_key = kind | default: product.handle
+  assign art_color = '#6b55b8'
+  assign art_label = product.title | default: art_key
+  case art_key
+    when 'tap-limescale-cleaner', 'tap'
+      assign art_color = '#6250ad'
+      assign art_label = 'TAP & SCALE'
+    when 'copper-bronze-brass-cleaner', 'metal'
+      assign art_color = '#55429b'
+      assign art_label = 'METAL CLEANER'
+    when 'non-toxic-toilet-cleaner', 'toilet'
+      assign art_color = '#7a62c2'
+      assign art_label = 'TOILET CLEANER'
+    when 'plant-based-laundry-detergent', 'laundry'
+      assign art_color = '#5a46a3'
+      assign art_label = 'LAUNDRY'
+    when 'washing-machine-cleaner', 'wm'
+      assign art_color = '#4b3a8f'
+      assign art_label = 'MACHINE CARE'
+    when 'herbal-floor-cleaner', 'floor'
+      assign art_color = '#8168c9'
+      assign art_label = 'FLOOR CLEANER'
+    when 'gentle-hydrating-handwash', 'handwash'
+      assign art_color = '#8f74d4'
+      assign art_label = 'HANDWASH'
+    when 'dish'
+      assign art_color = '#4b3a8f'
+      assign art_label = 'DISHWASH'
+    when 'kitchen', 'foaming-kitchen-cleaner'
+      assign art_color = '#6b55b8'
+      assign art_label = 'KITCHEN'
+  endcase
+%}
+{% if art_key == 'eraser' %}
+  <svg class="pl-art pl-art--eraser" viewBox="0 0 140 110" role="img" aria-label="Magic eraser"><rect x="8" y="12" width="124" height="86" rx="16" fill="#f0a03c"/><rect x="31" y="44" width="78" height="12" rx="2" fill="#fff" opacity=".92"/><rect x="43" y="66" width="54" height="8" rx="2" fill="#fff" opacity=".65"/></svg>
+{% elsif art_key == 'leaf' %}
+  <span class="pl-art pl-art--leaf" role="img" aria-label="Fabric conditioner"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21c0-6.5 3.5-11 8-12.5C20 15 16.5 20 12 21Z"/><path d="M12 21C12 14.5 8.5 10 4 8.5 4 15 7.5 20 12 21Z"/></svg></span>
+{% else %}
+  <svg class="pl-art" viewBox="0 0 140 220" role="img" aria-label="{{ product.title | default: art_label | escape }}">
+    <ellipse cx="70" cy="210" rx="42" ry="6" fill="#01423b" opacity=".16"/>
+    <rect x="54" y="4" width="32" height="25" rx="7" fill="{{ art_color }}" opacity=".86"/>
+    <rect x="59" y="27" width="22" height="19" rx="2" fill="{{ art_color }}" opacity=".72"/>
+    <rect x="27" y="44" width="86" height="160" rx="17" fill="{{ art_color }}"/>
+    <path d="M40 51h10v145H40c-5-25-5-121 0-145Z" fill="#fff" opacity=".15"/>
+    <rect x="38" y="103" width="64" height="63" rx="7" fill="#faf7fd" opacity=".94"/>
+    <text x="70" y="121" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" font-weight="700" fill="#241a3d">PURELANE</text>
+    <line x1="47" y1="128" x2="93" y2="128" stroke="#f0a03c" stroke-width="2"/>
+    <text x="70" y="143" text-anchor="middle" font-family="Arial,sans-serif" font-size="6.5" font-weight="700" fill="{{ art_color }}">{{ art_label | escape }}</text>
+    <rect x="52" y="151" width="36" height="4" rx="2" fill="{{ art_color }}" opacity=".35"/>
+  </svg>
+{% endif %}
