@@ -270,10 +270,11 @@
 .pl-category img { background: rgba(255,255,255,.35); height: 210px; object-fit: contain; padding: 18px; width: 100%; }
 .pl-category b,.pl-category span { padding-inline: 14px; }.pl-category b { font-size: 12px; margin-top: 12px; text-transform: uppercase; }.pl-category span { color: var(--pl-muted); font-size: 10px; margin-bottom: 14px; }
 .pl-trust { display: grid; grid-template-columns: repeat(4,1fr); padding: 16px; }.pl-trust span { color: var(--pl-green); font-size: 11px; font-weight: 700; letter-spacing: .1em; text-align: center; text-transform: uppercase; }
-.pl-signup { padding: 46px; text-align: center; }.pl-signup .pl-heading { margin-block: 12px; }.pl-signup p { color: var(--pl-muted); }.pl-signup__form { display: flex; gap: 9px; justify-content: center; margin: 22px auto 0; max-width: 440px; }.pl-signup input { background: rgba(255,255,255,.72); border: 1px solid rgba(75,58,143,.2); border-radius: 999px; flex: 1; min-width: 0; padding: 0 18px; }
+.pl-signup { padding: 46px; text-align: center; }.pl-signup .pl-heading { margin-block: 12px; }.pl-signup p { color: var(--pl-muted); }.pl-signup__form { display: flex; flex-wrap: wrap; gap: 9px; justify-content: center; margin: 22px auto 0; max-width: 440px; }.pl-signup input { background: rgba(255,255,255,.72); border: 1px solid rgba(75,58,143,.2); border-radius: 999px; color: #01423b; flex: 1; font-family: inherit; font-size: 14px; height: 46px; min-width: 180px; padding: 0 18px; }
+.pl-signup input:focus { background: #fff; border-color: var(--pl-orange); outline: none; }
 
 @media(max-width:900px){.pl-pillar-grid,.pl-proof__panel,.pl-category-grid{grid-template-columns:1fr}.pl-why__grid,.pl-proof__stats,.pl-trust{grid-template-columns:repeat(2,1fr)}.pl-progress{display:none}.pl-range{grid-template-columns:1fr}}
-@media(max-width:749px){.pl-pillar-grid{grid-template-columns:1fr}.pl-story-card{min-height:270px}.pl-proof__panel,.pl-bundles__head,.pl-why,.pl-signup{padding:24px}.pl-why__grid,.pl-proof__stats,.pl-trust{grid-template-columns:1fr 1fr}.pl-signup__form{flex-direction:column}.pl-signup input{height:46px}.pl-category-grid{grid-template-columns:repeat(2,1fr)}.pl-category img{height:150px}}
+@media(max-width:749px){.pl-pillar-grid{grid-template-columns:1fr}.pl-story-card{min-height:270px}.pl-proof__panel,.pl-bundles__head,.pl-why,.pl-signup{padding:24px}.pl-why__grid,.pl-proof__stats,.pl-trust{grid-template-columns:1fr 1fr}.pl-category-grid{grid-template-columns:repeat(2,1fr)}.pl-category img{height:150px}}
 
 /* reference hero primitives */
 :root {
